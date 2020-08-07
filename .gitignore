@@ -1,0 +1,7 @@
+# ignore files
+*.h5
+*.ini
+
+# ignore folders
+_pycache_/
+.ipynb_checkpoints/
