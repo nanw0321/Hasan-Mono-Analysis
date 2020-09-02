@@ -23,7 +23,7 @@ def define_devices(
     f1, f2, slit_width = 500e-6, hkl = [1,1,1], alphaAsym = 0., E0=18e3, f0 = 290., d23=7.):
 
     # viewing point upstream of monochromator
-    im0 = optics.PPM('im0', z=870, FOV=2e-3, N=256)
+    im0 = optics.PPM('im0', z=870, FOV=5e-3, N=256)
     crl0 = optics.CRL('crl0', z=920, E0=E0, f=f0, diameter=2e-3)
 
     # first crystal: symmetric reflection
@@ -43,13 +43,13 @@ def define_devices(
     crl1 = optics.CRL('crl1', z=crystal2.z+f1, E0=E0, f=f2, diameter=5e-3)
 
     # viewing point downstream of first crl
-    im1 = optics.PPM('im1', z=crl1.z+.1,N=256,FOV=2e-3)
+    im1 = optics.PPM('im1', z=crl1.z+.1,N=256,FOV=5e-3)
 
     # slit at focus
     slit = optics.Slit('slit', z=crl1.z+f2, x_width=slit_width, y_width=2e-3)
 
     # viewing point at focus
-    focus = optics.PPM('focus', z=crl1.z+f2 + 1e-3, FOV=300e-6, N=256)
+    focus = optics.PPM('focus', z=crl1.z+f2 + 1e-3, FOV=5e-3, N=256)
 
     # second CRL with ~1 meter focal length, for collimation
     crl2 = optics.CRL('crl2', z=crl1.z+2*f2, E0=E0, f=f2, diameter=5e-3)
@@ -63,7 +63,7 @@ def define_devices(
                               asym_type='emergence', orientation=0,pol='s')
 
     # viewing point just downstream of monochromator
-    im2 = optics.PPM('im2', z=crystal4.z+.1, FOV=2e-3, N=256)
+    im2 = optics.PPM('im2', z=crystal4.z+.1, FOV=5e-3, N=256)
 
     # list of devices to propagate through
     devices = [crl0,im0,crystal1,crystal2,im_upstream,im1,crl1,slit,focus,crl2,crystal3,crystal4,im2]
