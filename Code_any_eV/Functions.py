@@ -20,7 +20,7 @@ def enablePrint():
 
 ''' define beamline '''
 def define_devices(
-    f1, f2, slit_width = 500e-6, hkl = [1,1,1], alphaAsym = 0., E0=18e3, f0 = 290., d23=7.):
+    f1, f2, slit_width = 1e-3, hkl = [1,1,1], alphaAsym = 0., E0=18e3, f0 = 290., d23=7.):
 
     # viewing point upstream of monochromator
     im0 = optics.PPM('im0', z=870, FOV=5e-3, N=256)
@@ -94,6 +94,11 @@ def add_shapeError(devices, shapeError, crystal):
                                         z=device.z, E0=device.E0, alphaAsym=device.alphaAsym,
                                         orientation=device.orientation, pol=device.pol, delta=device.delta,
                                         shapeError = shapeError)
+
+def lens_energyError(devices, E):
+	for i, device in enumerate(devices):
+		if device.name[:3] == 'crl':
+			devices[i] = optics.CRL('crl1', z=device.z, E0=E, f=device.f, diameter=device.diameter)
 
 ''' get info '''
 def print_oe_pos(oe):
