@@ -1,6 +1,7 @@
 import time, h5py, os, sys
 import numpy as np
 import matplotlib.pyplot as plt
+
 from lcls_beamline_toolbox.xraybeamline2d import beam1d as beam, optics1d as optics, beamline1d as beamline
 from lcls_beamline_toolbox.xraybeamline2d.util import Util
 
